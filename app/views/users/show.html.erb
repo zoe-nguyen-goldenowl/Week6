@@ -1,0 +1,7 @@
+<h1>List users</h1>
+<% @user.each do |f|%>
+<p>
+   <strong>Email:</strong> <%= f.email %><br />
+   <strong>Password:</strong> <%= f.password %><br /><br />
+</p>
+<% end %>
