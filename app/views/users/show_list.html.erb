@@ -1,0 +1,7 @@
+<h1>List users</h1>
+<% @users = User.all%>
+<% @users.each do |i|%>
+    <p>email: <%= i.email%></p>
+    <p>email: <%= i.password%></p>
+    <%= link_to "detail", user_path(i) %>
+<% end %>

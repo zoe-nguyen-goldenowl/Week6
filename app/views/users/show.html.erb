@@ -1,7 +1,5 @@
-<h1>List users</h1>
-<% @user.each do |f|%>
-<p>
-   <strong>Email:</strong> <%= f.email %><br />
-   <strong>Password:</strong> <%= f.password %><br /><br />
-</p>
-<% end %>
+<h1>Account</h1>
+ <p>email: <%= @user.email %></p>
+ <p>password: <%= @user.password %></p>
+<%= link_to "show list users", show_list_path %>
+<%= link_to "Destroy this user", @user, method: :delete %>

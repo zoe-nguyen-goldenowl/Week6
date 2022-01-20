@@ -1,35 +1,52 @@
+require 'digest'
+
 class UsersController < ApplicationController
+    include UsersHelper
+      before_action :set_user, only: [ :show, :edit, :destroy, :update]
     def new 
-        @user = User.new
+        @users = User.new
     end
 
     def index
-        @user = User.new
+        @users = User.new
     end
     
-    def show
-        @user = User.all
+    def show   
+    end
+
+    def show_list
+    #    @users = User.all
     end
 
     def create
-        @user = User.new(users_params)
-        #   debugger
-            if @user.save
-                respond_to do |format|
-                    format.html {redirect_to  user_path(@user)}
-                end
-            else
-            render :index
+        if encode.save
+            respond_to do |format|
+                format.html { render :show}
             end
+        else
+            render :index
+        end
+    end    
     
-    end      
+
+    def login  
+        password = Digest::MD5.hexdigest(params[:password])
+        k =User.where(email: "#{params[:email]}", password: "#{password}")
+        if k.size == 0
+            render :index
+        else
+            render :show_list
+            
+        end
+    end 
 
     def edit
     end
     
     def destroy
-        @user.find(params[:id]).destroy
-      redirect_to :action => 'show' , noitice: "logged out"
+        if @user.destroy
+            redirect_to :action => 'show_list' 
+        end
     end
     
     private
