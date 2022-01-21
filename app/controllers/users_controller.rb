@@ -8,14 +8,12 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users = User.new
     end
     
     def show   
     end
 
     def show_list
-    #    @users = User.all
     end
 
     def create
@@ -27,15 +25,16 @@ class UsersController < ApplicationController
             render :index
         end
     end    
-    
+    def successful
+    end
 
     def login  
         password = Digest::MD5.hexdigest(params[:password])
         k =User.where(email: "#{params[:email]}", password: "#{password}")
         if k.size == 0
-            render :index
+             render :index
         else
-            render :show_list
+            redirect_to :controller => "users", :action => "successful"
             
         end
     end 

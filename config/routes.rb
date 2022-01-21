@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :users
   get "/show_list" => "users#show_list"
   get "/login" => "users#login"
+  get  "/successful" => "users#successful"
 end
